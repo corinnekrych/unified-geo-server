@@ -29,6 +29,12 @@ The UGS is totally independant from the UPS but here is how both could be integr
 3. A backend Application is notified (by a REST call, AMQ message, whatever) that Bob has registered to UGS and wants to notify the other users within a radius of 1 Km that Bob has checked in. Using the spatial query, it retrieves all the aliases and can now use that as criteria in the UnifiedPush Message.
 
 
+# Installation
+
+`mvn clean package` and then deploy to Wildfly/EAP.
+
+The console is available at : `http://localhost:8080/unified-geo-server/`
+
 
 # Exposed services
 
@@ -40,7 +46,7 @@ POST http://mygeoserver/rest/application
   "name" : "MyAwesomeApp"
 }
 ```
-In the console, after that the app has been created you will have a apiKey and apiSecret :
+In the console, after that the app has been created you will have a apiKey and apiSecret.
  
 
 
