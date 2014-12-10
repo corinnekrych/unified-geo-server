@@ -1,0 +1,94 @@
+<div class="form-horizontal">
+    <h3>Create a new Installation</h3>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-sm-2">
+            <a id="Create" name="Create" class="btn btn-primary" href="#/Installations/new"><span class="glyphicon glyphicon-plus-sign"></span> Create</a>
+        </div>
+    </div>
+</div>
+<hr/>
+<div>
+    <h3>Search for Installations</h3>
+    <form id="InstallationSearch" class="form-horizontal">
+        
+
+    <div class="form-group">
+        <label for="location" class="col-sm-2 control-label">Location</label>
+        <div class="col-sm-10">
+            <input id="location" name="location" class="form-control" type="text" ng-model="search.location" placeholder="Enter the Installation Location"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="alias" class="col-sm-2 control-label">Alias</label>
+        <div class="col-sm-10">
+            <input id="alias" name="alias" class="form-control" type="text" ng-model="search.alias" placeholder="Enter the Installation Alias"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="application" class="col-sm-2 control-label">Application</label>
+        <div class="col-sm-10">
+            <input id="application" name="application" class="form-control" type="text" ng-model="search.application" placeholder="Enter the Installation Application"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="longitude" class="col-sm-2 control-label">Longitude</label>
+        <div class="col-sm-10">
+            <input id="longitude" name="longitude" class="form-control" type="text" ng-model="search.longitude" placeholder="Enter the Installation Longitude"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="latitude" class="col-sm-2 control-label">Latitude</label>
+        <div class="col-sm-10">
+            <input id="latitude" name="latitude" class="form-control" type="text" ng-model="search.latitude" placeholder="Enter the Installation Latitude"></input>
+        </div>
+    </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-sm-10">
+                <a id="Search" name="Search" class="btn btn-primary" ng-click="performSearch()"><span class="glyphicon glyphicon-search"></span> Search</a>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="search-results">
+        <div class="table-responsive">
+        <table class="table table-responsive table-bordered table-striped clearfix">
+            <thead>
+                <tr>
+                    <th>Location</th>
+                    <th>Alias</th>
+                    <th>Application</th>
+                    <th>Longitude</th>
+                    <th>Latitude</th>
+                </tr>
+            </thead>
+            <tbody id="search-results-body">
+                <tr ng-repeat="result in searchResults | searchFilter:searchResults | startFrom:currentPage*pageSize | limitTo:pageSize">
+                    <td><a href="#/Installations/edit/{{result.id}}">{{result.location}}</a></td>
+                    <td><a href="#/Installations/edit/{{result.id}}">{{result.alias}}</a></td>
+                    <td><a href="#/Installations/edit/{{result.id}}">{{result.application}}</a></td>
+                    <td><a href="#/Installations/edit/{{result.id}}">{{result.longitude}}</a></td>
+                    <td><a href="#/Installations/edit/{{result.id}}">{{result.latitude}}</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+        <ul class="pagination pagination-centered">
+        <li ng-class="{disabled:currentPage == 0}">
+            <a id="prev" href ng-click="previous()">«</a>
+        </li>
+        <li ng-repeat="n in pageRange" ng-class="{active:currentPage == n}" ng-click="setPage(n)">
+            <a href ng-bind="n + 1">1</a>
+        </li>
+        <li ng-class="{disabled: currentPage == (numberOfPages() - 1)}">
+            <a id="next" href ng-click="next()">»</a>
+        </li>
+    </ul>
+
+</div>

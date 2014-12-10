@@ -1,0 +1,56 @@
+<header ng-switch on="$location.path().indexOf('/Installations/new') > -1">
+    <h3 ng-switch-when="true">Create a new Installation</h3>
+    <h3 ng-switch-when="false">View or edit Installation</h3>
+</header>
+<form id="InstallationForm" name="InstallationForm" class="form-horizontal" role="form">
+    <div ng-show="displayError" class="alert alert-danger">
+        <strong>Error!</strong> Something broke. Retry, or cancel and start afresh.
+    </div>
+    
+
+    <div class="form-group" ng-class="{'has-error': InstallationForm.location.$invalid}">
+        <label for="location" class="col-sm-2 control-label">Location</label>
+        <div id="locationControls" class="col-sm-10">
+            <input id="location" name="location" type="text" class="form-control" ng-model="installation.location" placeholder="Enter the Installation Location"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': InstallationForm.alias.$invalid}">
+        <label for="alias" class="col-sm-2 control-label">Alias</label>
+        <div id="aliasControls" class="col-sm-10">
+            <input id="alias" name="alias" type="text" class="form-control" ng-model="installation.alias" placeholder="Enter the Installation Alias"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': InstallationForm.application.$invalid}">
+        <label for="application" class="col-sm-2 control-label">Application</label>
+        <div id="applicationControls" class="col-sm-10">
+            <input id="application" name="application" type="text" class="form-control" ng-model="installation.application" placeholder="Enter the Installation Application"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': InstallationForm.longitude.$invalid}">
+        <label for="longitude" class="col-sm-2 control-label">Longitude</label>
+        <div id="longitudeControls" class="col-sm-10">
+            <input id="longitude" name="longitude" type="number" class="form-control" ng-model="installation.longitude" placeholder="Enter the Installation Longitude"></input>
+            <span class="help-block error" ng-show="InstallationForm.longitude.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': InstallationForm.latitude.$invalid}">
+        <label for="latitude" class="col-sm-2 control-label">Latitude</label>
+        <div id="latitudeControls" class="col-sm-10">
+            <input id="latitude" name="latitude" type="number" class="form-control" ng-model="installation.latitude" placeholder="Enter the Installation Latitude"></input>
+            <span class="help-block error" ng-show="InstallationForm.latitude.$error.number">not a number</span>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveInstallation" name="saveInstallation" class="btn btn-primary" ng-disabled="isClean() || InstallationForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteInstallation" name="deleteInstallation" class="btn btn-danger" ng-show="installation.id" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

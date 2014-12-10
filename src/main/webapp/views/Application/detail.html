@@ -1,0 +1,63 @@
+<header ng-switch on="$location.path().indexOf('/Applications/new') > -1">
+    <h3 ng-switch-when="true">Create a new Application</h3>
+    <h3 ng-switch-when="false">View or edit Application</h3>
+</header>
+<form id="ApplicationForm" name="ApplicationForm" class="form-horizontal" role="form">
+    <div ng-show="displayError" class="alert alert-danger">
+        <strong>Error!</strong> Something broke. Retry, or cancel and start afresh.
+    </div>
+    
+  <div class="form-group" ng-class="{'has-error': ApplicationForm.name.$invalid}">
+        <label for="name" class="col-sm-2 control-label">Name</label>
+        <div id="nameControls" class="col-sm-10">
+            <input id="name" name="name" type="text" class="form-control" ng-model="application.name" placeholder="Enter the Application Name"></input>
+        </div>
+    </div>
+    
+    <div class="form-group" ng-class="{'has-error': ApplicationForm.apiKey.$invalid}">
+        <label for="apiKey" class="col-sm-2 control-label">Api Key</label>
+        <div id="apiKeyControls" class="col-sm-10">
+            <input id="apiKey" disabled="disabled" name="apiKey" type="text" class="form-control" ng-model="application.apiKey" placeholder="Enter the Application Api Key"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ApplicationForm.apiSecret.$invalid}">
+        <label for="apiSecret" class="col-sm-2 control-label">Api Secret</label>
+        <div id="apiSecretControls" class="col-sm-10">
+            <input id="apiSecret" disabled="disabled" name="apiSecret" type="text" class="form-control" ng-model="application.apiSecret" placeholder="Enter the Application Api Secret"></input>
+        </div>
+    </div>
+
+  
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveApplication" name="saveApplication" class="btn btn-primary" ng-disabled="isClean() || ApplicationForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteApplication" name="deleteApplication" class="btn btn-danger" ng-show="application.id" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>
+<div id="search-results">
+        <div class="table-responsive">
+        <table class="table table-responsive table-bordered table-striped clearfix">
+            <thead>
+                <tr>
+                  
+                    <th>Alias</th>
+                    <th>Longitude</th>
+                    <th>Latitude</th>
+                </tr>
+            </thead>
+            <tbody id="search-results-body">
+                <tr ng-repeat="installation in installations">
+                    
+                    <td><a href="#/Installations/edit/{{result.id}}">{{installation.alias}}</a></td>
+                    <td><a href="#/Installations/edit/{{result.id}}">{{installation.longitude}}</a></td>
+                    <td><a href="#/Installations/edit/{{result.id}}">{{installation.latitude}}</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
