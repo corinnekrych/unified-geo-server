@@ -20,6 +20,9 @@ A lot of concepts have been borrowed by the UnifiedPush Server. The idea is to h
 * The client retrieves its geolocation and register to the UGS by providing an alias, a longitude and a latitude.
 * A backend application can now make spatial queries to the UGS : retrieve all the installations within a radius of a particular latitude/longitude pair or retrieve all the installation within  a radius of another installation (query by alias).
 
+![](http://s3.postimg.org/5eqjyyy0j/Untitled_Diagram.jpg)
+
+
 ## Integration with Push
 
 The UGS is totally independant from the UPS but here is how both could be integrated :
@@ -46,7 +49,9 @@ POST http://mygeoserver/rest/application
   "name" : "MyAwesomeApp"
 }
 ```
-In the console, after that the app has been created you will have a apiKey and apiSecret.
+In the console, after that the app has been created you will have a apiKey and apiSecret : 
+
+![](http://s28.postimg.org/ljjzmfarh/creds.png)
  
 
 
